@@ -112,8 +112,7 @@ public class BankImpl implements Bank {
             throw new IllegalArgumentException("fromIndex == toIndex");
         Account from = accounts[fromIndex];
         Account to = accounts[toIndex];
-        boolean flag;
-        flag = (fromIndex < toIndex);
+        boolean flag = (fromIndex < toIndex);
         if (flag) {
             from.lock();
             to.lock();
