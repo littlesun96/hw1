@@ -97,7 +97,7 @@ public class BankImpl implements Bank {
             account.amount -= amount;
             return account.amount;
         } finally {
-            accounts[index].unlock();
+            account.unlock();
         }
     }
 
@@ -112,8 +112,8 @@ public class BankImpl implements Bank {
             throw new IllegalArgumentException("fromIndex == toIndex");
         Account from = accounts[fromIndex];
         Account to = accounts[toIndex];
-        boolean flag = (fromIndex < toIndex);
-        if (flag) {
+        boolean order = (fromIndex < toIndex);
+        if (order) {
             from.lock();
             to.lock();
         } else {
@@ -128,7 +128,7 @@ public class BankImpl implements Bank {
             from.amount -= amount;
             to.amount += amount;
         } finally {
-            if (flag) {
+            if (order) {
                 to.unlock();
                 from.unlock();
             } else {
